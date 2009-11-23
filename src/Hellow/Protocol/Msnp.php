@@ -12,7 +12,7 @@ abstract class Hellow_Protocol_Msnp {
 	private $_connectionHandle;
 
 	public function __construct () {
-		$this->_connectionHandle = new SocketConnection();
+		$this->_connectionHandle = new Hellow_Core_SocketConnection;
 	}
 
 	public function setConnectionHandle($connectionHandle){
@@ -36,7 +36,7 @@ abstract class Hellow_Protocol_Msnp {
 		$this->_connectionHandle->disconnect();
 	}
 
-	protected function listen() {
+	protected final function listen() {
 		$i = 0;
 		$cont = true;
 		while ($cont) {
@@ -50,8 +50,7 @@ abstract class Hellow_Protocol_Msnp {
 			//if (!$this->getSocket()) {
 			//	$cont = false;
 			//}
-			$cont = false;
-			if ($i > 150){
+			if ($i > 40){
 				$cont = false;
 			}
 			$i++;

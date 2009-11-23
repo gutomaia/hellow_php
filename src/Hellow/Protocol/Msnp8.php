@@ -19,7 +19,11 @@ class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 	//Chalenger
 	private $CLIENT_ID = 'MSMSGS';
 	private $CLIENT_IDCODE = 'msmsgs@msnmsgr.com';
-	private $CLIENT_CODE = 'Q1P7W2E4J9R8U3S5'; // necessario para o chalenger
+	private $CLIENT_CODE = 'Q1P7W2E4J9R8U3S5'; // needed for the chalenger
+
+	public function __construct(){
+		parent::__construct();
+	}
 
 	function getHost() {
 		return $this->MSN_HOST;

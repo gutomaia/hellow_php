@@ -18,7 +18,8 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 	private $_authenticationHandle;
 
 	public function __construct() {
-		$this->_authenticationHandle = new TweenerAuthentication;
+		parent::__construct();
+		$this->_authenticationHandle = new Hellow_Auth_Tweener;
 	}
 
 	public function setAuthenticationHandle($authenticationHandle) {
@@ -47,7 +48,7 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 		}
 		parent::connect($host, $port);
 		$this->send($this->ver());
-		//$this->listen();
+		$this->listen();
 	}
 	
 
