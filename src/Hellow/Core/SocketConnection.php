@@ -1,5 +1,5 @@
 <?php
-class Core_SocketConnection implements Core_ConnectionHandle{
+class Hellow_Core_SocketConnection implements Hellow_Core_ConnectionHandle{
 
 	protected $_socket = null;
 
@@ -33,7 +33,8 @@ class Core_SocketConnection implements Core_ConnectionHandle{
 		if ($this->getSocket()) {
 			socket_write($this->getSocket(), $cmd, strlen($cmd));
 			flush();
-			echo "<p style=\"color:#99cc00;\" >" . $cmd . "</p>";
+//			echo "<p style=\"color:#99cc00;\" >" . $cmd . "</p>";
+			echo $cmd;
 		}
 	}
 
@@ -50,11 +51,10 @@ class Core_SocketConnection implements Core_ConnectionHandle{
 				//$command = substr($command, 0, strlen($command) -1);
 			}
 			if ($command != "") {
-				echo "<p style=\"color:#ff0000;\" >" . $command . "</p>";
+				echo $command;
+				//echo "<p style=\"color:#ff0000;\" >" . $command . "</p>";
 			}
 		}
 		return $command;
-
 	}
-	
 }
