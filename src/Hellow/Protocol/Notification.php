@@ -65,21 +65,18 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 	
 
 	private $_connectionListener = null;
-	private $_userListener = null;
-	private $_groupListener = null;
-	
+	private $_contactListener = null;
 	private $_presenceListener = null;
 	
 	// DEBUG
 	private $_commandListener = null;
 
 	public final function setClientApp($client_app){
-		$client_app->setMsn($this);
+		//$client_app->setMsn($this);
 		//if($client_app instanceOf)
-		$this->_connectionListener = & $client_app;
-		$this->_userListener = & $client_app;
-		$this->_groupListener = & $client_app;
-		$this->_presenceListener = & $client_app;
+		$this->_connectionListener = $client_app;
+		$this->_contactListener = $client_app;
+		$this->_presenceListener = $client_app;
 	}
 	
 	//Connection
@@ -87,11 +84,11 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 	protected final function onConnected($connection){if(!empty($this->_connectionListener)) $this->_connectionListener->onConnected($connection);}
 
 	//User || Contact
-	protected final function onAddUser($user, $nick, $lists, $groups=null){if(!empty($this->_userListener)){$this->_userListener->onAddUser(array('user'=>$user, 'nick'=>$nick, 'lists'=>$lists, 'groups'=>$groups));}}
-	protected final function onRemoveUser($user){if(!empty($this->_userListener)) $this->_userListener->onRemoveUser($user);}
+	protected final function onAddContact($user, $nick, $lists, $groups=null){if(!empty($this->_contactListener)){$this->_contactListener->onAddContact(array('user'=>$user, 'nick'=>$nick, 'lists'=>$lists, 'groups'=>$groups));}}
+	protected final function onRemoveContact($user){if(!empty($this->_contactListener)) $this->_contactListener->onRemoveContact($user);}
 	
 	//Group	
-	protected final function onAddGroup($id, $name, $unk){if(!empty($this->_groupListener)){$this->_groupListener->onAddGroup(array('group_id'=>$id, 'name'=>$name));}}
+	protected final function onAddGroup($id, $name, $unk){if(!empty($this->_contactListener)){$this->_contactListener->onAddGroup(array('group_id'=>$id, 'name'=>$name));}}
 	protected final function onRemoveGroup($group){}
 
 	// Presence
