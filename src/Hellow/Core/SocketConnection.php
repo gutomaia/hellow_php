@@ -34,13 +34,13 @@ class Hellow_Core_SocketConnection implements Hellow_Core_ConnectionHandle{
 			socket_write($this->getSocket(), $cmd, strlen($cmd));
 			flush();
 //			echo "<p style=\"color:#99cc00;\" >" . $cmd . "</p>";
-			echo $cmd;
+			echo "\033[31m".$cmd;
 		}
 	}
 
 	public function nextCommand() {
 		if ($this->getSocket()) {
-			$command = trim(socket_read($this->getSocket(), 2048, PHP_NORMAL_READ));
+			$command = socket_read($this->getSocket(), 2048, PHP_NORMAL_READ);
 			$cmd = substr($command, 0, 3);
 			if ($cmd == 'MSG') {
 				$command_aux = explode(' ', $command);
@@ -51,10 +51,10 @@ class Hellow_Core_SocketConnection implements Hellow_Core_ConnectionHandle{
 				//$command = substr($command, 0, strlen($command) -1);
 			}
 			if ($command != "") {
-				echo $command;
+				echo "\033[32m".$command;
 				//echo "<p style=\"color:#ff0000;\" >" . $command . "</p>";
 			}
 		}
-		return $command;
+		return trim($command);
 	}
 }
