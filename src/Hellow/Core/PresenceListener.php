@@ -1,5 +1,5 @@
 <?php
-interface Core_PresenceListener {
+interface Hellow_Core_PresenceListener {
 	function onContactAvaiable($contact);
 	function onContactBusy($contact);
 	function onContactIdle($contact);
