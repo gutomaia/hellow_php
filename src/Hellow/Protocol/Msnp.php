@@ -47,35 +47,11 @@ abstract class Hellow_Protocol_Msnp {
 			//if ($endtime - $initime > 30) {
 			//	$cont = false;
 			//}
-			//if (!$this->getSocket()) {
-			//	$cont = false;
-			//}
 			if ($i > 40){
 				$cont = false;
 			}
 			$i++;
 		}
 		$this->logout();
-	}
-	
-	protected function listen2() {
-		$i = 0;
-		if ($this->getSocket()){
-			for ($cmd = $this->nextCommand(); !empty($cmd);$cmd = $this->nextCommand(), $i++){
-				$tokens = explode(" ", $cmd);
-				$this->execute($tokens[0], $tokens);
-				flush();
-				if (!$this->getSocket()) {
-					return false;
-				}
-				echo $i;
-				if ($i == 100){
-					echo 'loop no listen 2';
-					break;
-				}
-			}
-			return true;
-		}
-		return false;
 	}
 }
