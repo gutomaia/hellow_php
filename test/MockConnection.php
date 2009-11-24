@@ -27,4 +27,8 @@ class MockConnection implements Hellow_Core_ConnectionHandle {
 		return null;
 	}
 
+	function hasMoreCommands(){
+		return false;
+	}
+
 }

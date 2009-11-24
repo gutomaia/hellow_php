@@ -48,13 +48,12 @@ abstract class Hellow_Protocol_Msnp {
 
 	protected final function listen() {
 		$cont = true;
-		while ($cont) {
+		while ($this->_connectionHandle->hasMoreCommands()) {
 			$command = $this->_connectionHandle->nextCommand();
 			if (trim($command) != "") {
 				$this->execute($command);
 				$this->onCommandReceived($command);
 			}
 		}
-		$this->logout();
 	}
 }
