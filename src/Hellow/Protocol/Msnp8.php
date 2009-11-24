@@ -110,9 +110,9 @@ class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 				break;
 			case "LST" :
 				if (sizeof($params) == 5) {						
-					$this->onAddUser($params[1], $params[2], $params[3], $params[4]);
+					$this->onAddContact($params[1], $params[2], $params[3], $params[4]);
 				} else {
-					$this->onAddUser($params[1], $params[2], $params[3]);
+					$this->onAddContact($params[1], $params[2], $params[3]);
 				}
 				break;
 			case "BPR" :
@@ -128,11 +128,12 @@ class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 				break;
 			case "RNG" :
 				//RNG sessid address authtype ticket invitepassport invitename\r\n
-				//RNG 876505971 65.54.228.15:1863 CKI 4216622.2513084 gutomneto@hotmail.com Guto
+				//RNG 876505971 65.54.228.15:1863 CKI 4216622.2513084 username@hotmail.com Nick
 				//Msnc1::enter($params[1], $params[2], $params[3], $params[4], $params[5]);
 				break;
 			case "CHG" :
-				$this->onConnected(null);
+				echo "connectedddd---------";
+				$this->onConnected();
 				break;
 			case "CHL" :
 				$this->send($this->qry($params[2]));
@@ -144,8 +145,7 @@ class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 				$this->disconnect();
 				break;
 			default :
-				echo "MSG RESPONSAVEL POR ERRO---$msg---";
-				var_dump($params[0]);
+				echo "MSG RESPONSAVEL POR ERRO---$command---";
 				//$cont = false;
 				//die();
 				//$this->disconnect();

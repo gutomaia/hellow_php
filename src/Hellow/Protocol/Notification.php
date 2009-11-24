@@ -71,17 +71,21 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 	// DEBUG
 	private $_commandListener = null;
 
-	public final function setClientApp($client_app){
-		//$client_app->setMsn($this);
-		//if($client_app instanceOf)
-		$this->_connectionListener = $client_app;
-		$this->_contactListener = $client_app;
-		$this->_presenceListener = $client_app;
+	public final function addConnectionListener($connectionListener){
+		$this->_connectionListener = $connectionListener;
+	}
+
+	public final function addContactListener($contactListener){
+		$this->_contactListener = $contactListener;
+	}
+
+	public final function addPresenceListener($presenceListener){
+		$this->_presenceListener = $presenceListener;
 	}
 	
 	//Connection
-	protected final function onLogged($connection){if(!empty($this->_connectionListener)) $this->_connectionListener->onLogged($connection);}
-	protected final function onConnected($connection){if(!empty($this->_connectionListener)) $this->_connectionListener->onConnected($connection);}
+	protected final function onLogged(){if(!empty($this->_connectionListener)) $this->_connectionListener->onLogged();}
+	protected final function onConnected(){if(!empty($this->_connectionListener)) $this->_connectionListener->onConnected();}
 
 	//User || Contact
 	protected final function onAddContact($user, $nick, $lists, $groups=null){if(!empty($this->_contactListener)){$this->_contactListener->onAddContact(array('user'=>$user, 'nick'=>$nick, 'lists'=>$lists, 'groups'=>$groups));}}

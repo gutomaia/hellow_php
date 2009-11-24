@@ -37,7 +37,7 @@ abstract class Hellow_Protocol_Msnp {
 	}
 
 	protected final function listen() {
-		$i = 0;
+		//$i = 0;
 		$cont = true;
 		while ($cont) {
 			$command = $this->_connectionHandle->nextCommand();
@@ -47,10 +47,10 @@ abstract class Hellow_Protocol_Msnp {
 			//if ($endtime - $initime > 30) {
 			//	$cont = false;
 			//}
-			if ($i > 40){
-				$cont = false;
-			}
-			$i++;
+			//if ($i > 40){
+			//	$cont = false;
+			//}
+			//$i++;
 		}
 		$this->logout();
 	}
