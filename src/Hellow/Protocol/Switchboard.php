@@ -18,15 +18,22 @@ abstract class Hellow_Protocol_Switchboard extends Hellow_Protocol_Msnp {
 	const MSNC6 = 0x60000000; //Msn Msgr 8.0
 	const MSNC7 = 0x70000000; //Msn Msgr 8.1
 	const MSNC8 = 0x70000000; //Msn Msgr 8.5
+
+	private $_host;
+	private $_port;
 		
 	public function getHost(){
+		return $this->_host;
 		
 	}
 	
 	public function getPort(){
+		return $this->_port;
 	}
 	
-	
-	
+	protected function connect($host, $port) {
+		$this->_host = $host;
+		$this->_port = $port;
+		$this->_connectionHandle->connect($host, $port);
+	}
 }
-?>
