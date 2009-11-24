@@ -1,3 +1,42 @@
-TODO:
+Little brief MSN Protocol crash course.
 
-explains the msn protocol and class tree
+The msn protocol basicaly uses two protocols command groups:
+
+One is the NOTIFICATION protocol, witch it uses to connect to msn and get information about what is the user contact list and how is online.
+
+The other is the SWITCHBOARD protocol, witch it uses on the message conversations. Each chat window opens it's own switchboard.
+So we got this tree class hiearchy:
+
+		MSNP
+		  |
+	-------------------------
+	|			|
+	Notification		Swichboard
+	|			|
+	Msnp8			Msnc1
+	|
+	Msnp9 (not implemented yet)
+
+
+This basic structure i belive that better maps the problem (any other sugestion are welcome).
+
+The Msnp class is an abstract class that implement the basic connection, command input and output.
+
+The Notification is an abstract class that implement basic functions only avaible on the Notification part, like login, logout and defines behaviors for the listeners.
+
+Msnp8 is an concrete class. It does implemement the protocol version 8.
+
+Msnp9 is just to ilustrate (for now) the there are only minor diferences between protocol versions.
+
+The Switchboard is an abstract class that implement very basic fucntions about the message chat.
+
+Mscn1 is an implemen
+
+references:
+Main Source: http://www.hypothetic.org/docs/msn/index.php
+more details: http://msnpiki.msnfanatic.com/index.php/Main_Page
+for even more, google it!
+
+
+
+
