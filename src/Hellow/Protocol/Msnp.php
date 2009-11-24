@@ -19,12 +19,22 @@ abstract class Hellow_Protocol_Msnp {
 		$this->_connectionHandle = $connectionHandle;
 	}
 
+	private $_commandListener = null;
+
+	public final function addCommandListener($commandListener){
+		$this->_commandListener = $commandListener;
+	}
+
+	protected final function onCommandReceived($command){if(!empty($this->_commandListener)) $this->_commandListener->onCommandReceived($command);}
+	protected final function onCommandSended($command){if(!empty($this->_commandListener)) $this->_commandListener->onCommandSended($command);}
+
 	abstract function getHost();
 	abstract function getPort();
 	abstract function execute($command);
 
 	protected final function send($cmd) {
 		$this->_connectionHandle->send($cmd);
+		$this->onCommandSended($cmd);
 		$this->_trid++;
 	}
 
@@ -37,12 +47,12 @@ abstract class Hellow_Protocol_Msnp {
 	}
 
 	protected final function listen() {
-		//$i = 0;
 		$cont = true;
 		while ($cont) {
 			$command = $this->_connectionHandle->nextCommand();
 			if (!empty ($command)) {
 				$this->execute($command);
+				$this->onCommandReceived($command);
 			}
 			//if ($endtime - $initime > 30) {
 			//	$cont = false;
