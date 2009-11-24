@@ -50,17 +50,10 @@ abstract class Hellow_Protocol_Msnp {
 		$cont = true;
 		while ($cont) {
 			$command = $this->_connectionHandle->nextCommand();
-			if (!empty ($command)) {
+			if (trim($command) != "") {
 				$this->execute($command);
 				$this->onCommandReceived($command);
 			}
-			//if ($endtime - $initime > 30) {
-			//	$cont = false;
-			//}
-			//if ($i > 40){
-			//	$cont = false;
-			//}
-			//$i++;
 		}
 		$this->logout();
 	}
