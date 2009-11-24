@@ -82,17 +82,15 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 	public final function addPresenceListener($presenceListener){
 		$this->_presenceListener = $presenceListener;
 	}
-	
+
 	//Connection
 	protected final function onLogged(){if(!empty($this->_connectionListener)) $this->_connectionListener->onLogged();}
 	protected final function onConnected(){if(!empty($this->_connectionListener)) $this->_connectionListener->onConnected();}
 
-	//User || Contact
+	//Contact
 	protected final function onAddContact($user, $nick, $lists, $groups=null){if(!empty($this->_contactListener)){$this->_contactListener->onAddContact(array('user'=>$user, 'nick'=>$nick, 'lists'=>$lists, 'groups'=>$groups));}}
 	protected final function onRemoveContact($user){if(!empty($this->_contactListener)) $this->_contactListener->onRemoveContact($user);}
-	
-	//Group	
-	protected final function onAddGroup($id, $name, $unk){if(!empty($this->_contactListener)){$this->_contactListener->onAddGroup(array('group_id'=>$id, 'name'=>$name));}}
+protected final function onAddGroup($id, $name, $unk){if(!empty($this->_contactListener)){$this->_contactListener->onAddGroup(array('group_id'=>$id, 'name'=>$name));}}
 	protected final function onRemoveGroup($group){}
 
 	// Presence
