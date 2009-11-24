@@ -74,7 +74,7 @@ class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 	}
 
 	function execute($command) {
-		$params = explode(" ", $command);
+		$params = explode(" ", trim($command));
 		switch ($params[0]) {
 			case "VER" :
 				$this->send($this->cvr());

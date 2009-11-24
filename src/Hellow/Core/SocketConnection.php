@@ -1,7 +1,8 @@
 <?php
 class Hellow_Core_SocketConnection implements Hellow_Core_ConnectionHandle{
 
-	protected $_socket = null;
+	private $_socket = null;
+	private $_buffer = "";
 
 	private function getSocket() {
 		if ($this->_socket < 0) {
@@ -33,10 +34,10 @@ class Hellow_Core_SocketConnection implements Hellow_Core_ConnectionHandle{
 		if ($this->getSocket()) {
 			socket_write($this->getSocket(), $cmd, strlen($cmd));
 			flush();
-//			echo "<p style=\"color:#99cc00;\" >" . $cmd . "</p>";
-			echo "\033[31m".$cmd;
 		}
 	}
+
+//TODO: fix payloads->http://www.hypothetic.org/docs/msn/resources/faq.php#howtoparse
 
 	public function nextCommand() {
 		if ($this->getSocket()) {
@@ -47,14 +48,12 @@ class Hellow_Core_SocketConnection implements Hellow_Core_ConnectionHandle{
 				$bytes = intval($command_aux[sizeof($command_aux) - 1]);
 				$payload = socket_read($this->getSocket(), $bytes);
 				$command .= $this->EL. $payload;
-			} else {
-				//$command = substr($command, 0, strlen($command) -1);
-			}
-			if ($command != "") {
-				echo "\033[32m".$command;
-				//echo "<p style=\"color:#ff0000;\" >" . $command . "</p>";
 			}
 		}
-		return trim($command);
+		return $command;
+	}
+
+	public function hasMoreCommands(){
+		return true;
 	}
 }
