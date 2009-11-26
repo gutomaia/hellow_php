@@ -5,7 +5,6 @@ class Client {
 		require_once ("Hellow/Core/CommandListener.php");
 		require_once ("Hellow/Core/ConnectionListener.php");
 		require_once ("Hellow/Core/ContactListener.php");
-		require_once ("Hellow/Core/ClientApp.php");
 		require_once ("Hellow/Core/ConnectionHandle.php");
 		require_once ("Hellow/Core/SocketConnection.php");
 		require_once ("Hellow/Core/TerminalDebug.php");
