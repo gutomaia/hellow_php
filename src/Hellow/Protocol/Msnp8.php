@@ -88,7 +88,7 @@ class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 				break;
 			case "USR" :
 				if ($params[2] == "TWN") {
-					$this->_passport = $this->authenticate($params[4]);
+					$this->authenticate($params[4]);
 					$this->send($this->usr());
 				}
 				elseif ($params[2] == "OK") {
@@ -115,6 +115,13 @@ class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 					$this->onAddContact($params[1], $params[2], $params[3]);
 				}
 				break;
+			case "PHH":
+			case "PHW":
+			case "PHM":
+
+			case "MOB":
+			case "MBE":
+
 			case "BPR" :
 				break;
 			case "ILN" :				
@@ -132,14 +139,12 @@ class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 				//Msnc1::enter($params[1], $params[2], $params[3], $params[4], $params[5]);
 				break;
 			case "CHG" :
-				echo "connectedddd---------";
 				$this->onConnected();
 				break;
 			case "CHL" :
 				$this->send($this->qry($params[2]));
 				break;
 			case "QRY" :
-				//$this->logout();
 			break;				
 			case "207" :
 				$this->disconnect();

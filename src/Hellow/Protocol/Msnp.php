@@ -5,8 +5,6 @@ abstract class Hellow_Protocol_Msnp {
 
 	protected $_trid = 1;
 
-	protected $_passport = null;
-
 	private $_connection;
 
 	private $_connectionHandle;
@@ -47,7 +45,6 @@ abstract class Hellow_Protocol_Msnp {
 	}
 
 	protected final function listen() {
-		$cont = true;
 		while ($this->_connectionHandle->hasMoreCommands()) {
 			$command = $this->_connectionHandle->nextCommand();
 			if (trim($command) != "") {

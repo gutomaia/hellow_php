@@ -28,11 +28,12 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 
 
 	protected function authenticate($lc){
-		return $this->_authenticationHandle->authenticate($this->_username, $this->_password, $lc);		
+		$this->_passport = $this->_authenticationHandle->authenticate($this->_username, $this->_password, $lc);		
 	}
 	
 	private $_username = null;
 	private $_password = null;
+	private $_passport = null;
 
 	protected final function getUsername(){
 		return $this->_username;
@@ -68,9 +69,6 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 	private $_contactListener = null;
 	private $_presenceListener = null;
 	
-	// DEBUG
-	private $_commandListener = null;
-
 	public final function addConnectionListener($connectionListener){
 		$this->_connectionListener = $connectionListener;
 	}
