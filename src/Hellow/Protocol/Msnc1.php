@@ -1,4 +1,13 @@
 <?php
+/*  HellowPhp, alpha version
+ *  (c) 2009 Gustavo Maia Neto (gutomaia)
+ *
+ *  HellowPhp and all other Hellow flavors will be always
+ *  freely distributable under the terms of an GPLv3 licence.
+ *
+ *  Human Knowledge belongs to the World!
+ *--------------------------------------------------------------------------*/
+ 
 class Hellow_Protocol_Msnc1 extends Hellow_Protocol_Switchboard{
 
 	public static function getDisplayPicture($nsProtocol,$contact){

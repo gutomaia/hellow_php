@@ -1,8 +1,13 @@
 <?php
-/* MSN PROTOCOL VERSION 8;
- * @author Gustavo Maia Neto
- */
-
+/*  HellowPhp, alpha version
+ *  (c) 2009 Gustavo Maia Neto (gutomaia)
+ *
+ *  HellowPhp and all other Hellow flavors will be always
+ *  freely distributable under the terms of an GPLv3 licence.
+ *
+ *  Human Knowledge belongs to the World!
+ *--------------------------------------------------------------------------*/
+ 
 class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 	
 	private $MSN_HOST = 'messenger.hotmail.com';
