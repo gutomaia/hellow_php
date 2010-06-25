@@ -8,7 +8,7 @@
  *  Human Knowledge belongs to the World!
  *--------------------------------------------------------------------------*/
 
-require '../src/client.php';
+//require '../src/client.php';
 
 
 class ProtocolTest extends PHPUnit_Framework_TestCase {
@@ -31,10 +31,10 @@ class ProtocolTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function setup(){
-		Client::init();
-		require_once './MockAuthentication.php';
-		require_once './MockConnection.php';
-		require_once './MockClient.php';
+		//Client::init();
+		//require_once './MockAuthentication.php';
+		//require_once './MockConnection.php';
+		//require_once './MockClient.php';
 		$this->_mockClient = new MockClient;
 		$this->_mockAuth = new MockAuthentication;
 		$this->_mockConnection = new MockConnection;
