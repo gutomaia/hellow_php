@@ -25,6 +25,10 @@
 				<groupId>org.phpmaven</groupId>
 				<artifactId>maven-php-plugin</artifactId>
 				<extensions>true</extensions>
+				<configuration>
+					<compileArgs> -d auto_prepend_file=loader.php </compileArgs>
+					<ignoreValidate>false</ignoreValidate>
+				</configuration>
 			</plugin>
 		<!--  The web assembyl -->
 		<plugin>
@@ -58,13 +62,11 @@
 
 	<dependencies>
 		<!--  phpUnit for PHP 5 -->
-<!--
 		<dependency>
 			<groupId>org.phpunit</groupId>
 			<artifactId>phpunit5</artifactId>
 			<version>3.2.9-SNAPSHOT</version>
 		</dependency>
--->
 
 		<!--  phpUnit for PHP 4 -->
 <!--
@@ -135,7 +137,6 @@
 			</releases>
 			-->
 		</repository>
-		<!--
 		<repository>
 			<id>snapshot-repo1.php-maven.org</id>
 			<name>PHP-Maven 2 Snapshot Repository</name>
@@ -147,7 +148,6 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
-		-->
 	</repositories>
 </project>
 
