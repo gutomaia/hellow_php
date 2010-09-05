@@ -3,7 +3,7 @@
  *  (c) 2009 Gustavo Maia Neto (gutomaia)
  *
  *  HellowPhp and all other Hellow flavors will be always
- *  freely distributable under the terms of an GPLv3 licence.
+ *  freely distributed under the terms of an GPLv3 license.
  *
  *  Human Knowledge belongs to the World!
  *--------------------------------------------------------------------------*/
@@ -93,8 +93,8 @@ class Hellow_Protocol_Msnc1 extends Hellow_Protocol_Switchboard{
 		
 	}
 /*		
-USR 1 guto_n@hotmail.com 700432717.4772207.1043557
-USR 1 OK guto_n@hotmail.com guto
+USR 1 hellow@hotmail.com 700432717.4772207.1043557
+USR 1 OK hellow@hotmail.com guto
 CAL 2 buddy@msn.com
 CAL 2 RINGING 700432717
 JOI buddy@msn.com buddy
