@@ -63,15 +63,14 @@ class ProtocolTest extends PHPUnit_Framework_TestCase {
 		
 		//Client sends information
 
-		$this->receive("CVR 2 6.0.0602 1.0.000 http://download.microsoft.com/download/8/a/4/");
+		$this->receive("CVR 2 6.0.0602 1.0.000 http://download.microsoft.com/download/8/a/4/\r\n");
 		$this->send("USR 3 TWN I dvader@empire.com\r\n");
 
 		//Redirect
 		$this->receive("XFR 3 NS 207.46.106.118:1863 0 207.46.104.20:1863\r\n");
 		$this->send("VER 4 MSNP8 CVR0\r\n");
-		$this->assertEquals("207.46.106.118",$this->_mockConnection->host, "Host não foi alterado");
-		$this->assertEquals("1863",$this->_mockConnection->port, "Port não foi alterada");
-
+		$this->assertEquals("207.46.106.118",$this->_mockConnection->host, "Invalid host");
+		$this->assertEquals("1863",$this->_mockConnection->port, "Invalid port");
 
 		$this->receive("VER 4 MSNP8 CVR0\r\n");
 		$this->send("CVR 5 0x0409 win 4.10 i386 MSNMSGR 6.0.0602 MSMSGS dvader@empire.com\r\n");
@@ -83,6 +82,8 @@ class ProtocolTest extends PHPUnit_Framework_TestCase {
 		$this->receive("USR 6 TWN S lc=1033,id=507,tw=40,fs=1,ru=http%3A%2F%2Fmessenger%2Emsn%2Ecom,ct=1062764229,kpp=1,kv=5,ver=2.1.0173.1,tpf=43f8a4c8ed940c04e3740be46c4d1619\r\n");
 		$this->send("USR 7 TWN S t=53*1hAu8ADuD3TEwdXoOMi08sD*2!cMrntTwVMTjoB3p6stWTqzbkKZPVQzA5NOt19SLI60PY!b8K4YhC!Ooo5ug$$&p=5eKBBC!yBH6ex5mftp!a9DrSb0B3hU8aqAWpaPn07iCGBw5akemiWSd7t2ot!okPvIR!Wqk!MKvi1IMpxfhkao9wpxlMWYAZ!DqRfACmyQGG112Bp9xrk04!BVBUa9*H9mJLoWw39m63YQRE1yHnYNv08nyz43D3OnMcaCoeSaEHVM7LpR*LWDme29qq2X3j8N\r\n");
 		$this->assertFalse($this->_mockClient->logged, "User not logged, ConnectionListener::onLogged shoudn't be called");
+
+		//Logged
 		$this->receive("USR 7 OK dvader@empire.com Dart%20Vader 1 0\r\n");
 		$this->assertTrue($this->_mockClient->logged, "User logged, ConnectionListener::onLogged should be called");
 		$this->send("SYN 1 0\r\n");
