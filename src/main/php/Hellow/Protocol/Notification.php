@@ -24,7 +24,7 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 	abstract function getIdCode();
 	abstract function getCode();
 
-	private $_authenticationHandle;
+	private $_authenticationHandle = null;
 
 	public function __construct() {
 		parent::__construct();
@@ -77,6 +77,7 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 	private $_connectionListener = null;
 	private $_contactListener = null;
 	private $_presenceListener = null;
+	private $_callListener = null;
 	
 	public final function addConnectionListener($connectionListener){
 		$this->_connectionListener = $connectionListener;
@@ -89,6 +90,11 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 	public final function addPresenceListener($presenceListener){
 		$this->_presenceListener = $presenceListener;
 	}
+
+	public final function addCallListener($callListener){
+		$this->_callListener = $callListener;
+	}
+
 
 	//Connection
 	protected final function onLogged(){if(!empty($this->_connectionListener)) $this->_connectionListener->onLogged();}
@@ -110,12 +116,15 @@ protected final function onAddGroup($id, $name, $unk){if(!empty($this->_contactL
 	protected final function onContactAway($contact){if(!empty($this->_presenceListener)) $this->_presenceListener->onContactAway($contact);}
 	protected final function onContactOnPhone($contact){if(!empty($this->_presenceListener)) $this->_presenceListener->onContactOnPhone($contact);}
 	protected final function onContactOutLunch($contact){if(!empty($this->_presenceListener)) $this->_presenceListener->onContactOutLunch($contact);}
-	
-	
+
+	//Call
+	protected final function onRing($call, $server, $port, $cki, $username, $nick){
+		if(!empty($this->_callListener)) $this->_callListener->onRing($call, $server, $port, $cki, $username, $nick);
+	}
+
 	function ver() {
 		return "VER ". $this->_trid ." ".$this->getProtocolVersion()." CVR0". $this->EL;
 	}
-
 
 	function cvr() {
 		return "CVR " . $this->_trid . " " . $this->getLocale() . " " .	$this->getOSType() . " " . $this->getOSVersion() . " " .
