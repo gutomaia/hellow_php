@@ -14,3 +14,4 @@ interface Hellow_Core_ContactListener {
 	function onAddGroup($group);
 	function onRemoveGroup($group);
 }
+
