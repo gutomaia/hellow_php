@@ -50,8 +50,8 @@ class Hellow_Core_SocketConnection implements Hellow_Core_ConnectionHandle{
 
 	public function nextCommand() {
 		if ($this->getSocket()) {
-			$command = socket_read($this->getSocket(), 2048, PHP_NORMAL_READ);
-			$cmd = substr($command, 0, 3);
+			$command = socket_read($this->_socket, 2048, PHP_NORMAL_READ);
+			$cmd = substr($command, 0, 3);			
 			if ($cmd == 'MSG') {
 				$command_aux = explode(' ', $command);
 				$bytes = intval($command_aux[sizeof($command_aux) - 1]);
