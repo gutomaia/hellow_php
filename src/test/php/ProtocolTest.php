@@ -8,9 +8,6 @@
  *  Human Knowledge belongs to the World!
  *--------------------------------------------------------------------------*/
 
-//require '../src/client.php';
-
-
 class ProtocolTest extends PHPUnit_Framework_TestCase {
 
 	private $_msn;
