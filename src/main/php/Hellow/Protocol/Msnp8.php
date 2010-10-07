@@ -137,7 +137,7 @@ class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 			case "MSG" :
 				break;
 			case "RNG" :
-				$this->onRing($params[1], $params[2], $params[3], $params[4], $params[5]);
+				$this->onRing($params[1], $params[2], $params[3], $params[4], $params[5], $params[6]);
 				break;
 			case "CHG" :
 				$this->onConnected();
