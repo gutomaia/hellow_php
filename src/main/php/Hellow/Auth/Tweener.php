@@ -78,9 +78,7 @@ class Hellow_Auth_Tweener implements Hellow_Core_Authentication{
 
 	function request($url, $port, $httpRequest){
 		$host = substr($url, 0,strpos($url,'/'));
-		if ($port == 443){
-			$host = 'ssl://'.$host;
-		}
+		$host = ($port == 443)?'ssl://'.$host:$host;
 		$fp = fsockopen($host, $port, $errno, $errstr);
 		if (!$fp){
 			echo '>>>>ERRO'. $errno. ' '. $errstr.' '.$host;
@@ -98,15 +96,17 @@ class Hellow_Auth_Tweener implements Hellow_Core_Authentication{
 
 	function performTheLogin($username, $password, $lc){
 		$DALogin = $this->passportProps['DALogin'];
-		$authParams = array();
-		$authParams['Passport1.4 OrgVerb']= 'GET';
-		$authParams['OrgURL'] = 'http%3A%2F%2Fmessenger%2Emsn%2Ecom';
-		$authParams['sign-in'] = $this->encode($username);
-		$authParams['pwd'] = $this->encode($password);
-		$authParams['lc'] = $lc;
+		$authParams = array(
+			'Passport1.4 OrgVerb'=> 'GET',
+			'OrgURL'=> 'http%3A%2F%2Fmessenger%2Emsn%2Ecom',
+			'sign-in'=> $this->encode($username),
+			'pwd' => $this->encode($password),
+			'lc' => $lc
+		);
 		$authorization = $this->buildParamVars($authParams);
-		$requestParams = array();
-		$requestParams['Authorization'] = $authorization;
+		$requestParams = array(
+			'Authorization' => $authorization
+		);
 		$httpRequest = $this->buildHttpRequestHeader($DALogin, $requestParams);
 		$httpResponse = $this->request($DALogin, 443, $httpRequest);
 		$httpHeader = $this->extractHttpResponseHeader($httpResponse);
