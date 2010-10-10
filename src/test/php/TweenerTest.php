@@ -61,21 +61,20 @@ class TweenerTest extends PHPUnit_Framework_TestCase {
 				'https://accountservices.passport.net', 'Help not equals');
 		$this->assertEquals($props['ConfigVersion'],
 				'14','ConfigVersion not equals');
-
 	}
 
 	public function testBuildParamVars() {
-		$username = "dvader%40empire.com";
-		$password = "ih8jedis";
-		$lc = "ct=1278901179,rver=5.5.4182.0,wp=FS_40SEC_0_COMPACT,lc=1033,id=507,ru=http:%2F%2Fmessenger.msn.com,tw=0,kpp=1,kv=4,ver=2.1.6000.1,rn=1lgjBfIL,tpf=b0735e3a873dfb5e75054465196398e0";
-		$expected = "Passport1.4 OrgVerb=GET,OrgURL=http%3A%2F%2Fmessenger%2Emsn%2Ecom,sign-in="
-				. $username . ",pwd=" . $password . "," . $lc;
+		$username = 'dvader%40empire.com';
+		$password = 'ih8jedis';
+		$lc = 'ct=1278901179,rver=5.5.4182.0,wp=FS_40SEC_0_COMPACT,lc=1033,id=507,ru=http:%2F%2Fmessenger.msn.com,tw=0,kpp=1,kv=4,ver=2.1.6000.1,rn=1lgjBfIL,tpf=b0735e3a873dfb5e75054465196398e0';
+		$expected = 'Passport1.4 OrgVerb=GET,OrgURL=http%3A%2F%2Fmessenger%2Emsn%2Ecom,sign-in='
+				. $username . ',pwd=' . $password . ',' . $lc;
 		$authParams = array();
-		$authParams["Passport1.4 OrgVerb"] = "GET";
-		$authParams["OrgURL"] = "http%3A%2F%2Fmessenger%2Emsn%2Ecom";
-		$authParams["sign-in"] = $username;
-		$authParams["pwd"] = $password;
-		$authParams["lc"] = $lc;
+		$authParams['Passport1.4 OrgVerb'] = 'GET';
+		$authParams['OrgURL'] = "http%3A%2F%2Fmessenger%2Emsn%2Ecom";
+		$authParams['sign-in'] = $username;
+		$authParams['pwd'] = $password;
+		$authParams['lc'] = $lc;
 		$actual = $this->_twn->buildParamVars($authParams);
 		$this->assertEquals($expected, $actual);
 	}
@@ -86,7 +85,6 @@ class TweenerTest extends PHPUnit_Framework_TestCase {
 				. $this->EL;
 		$expected .='Host: login.live.com' . $this->EL;
 		$expected .= $this->EL;
-		
 		$requestParams = array();
 		$requestParams['Authorization'] = 'Passport1.4 OrgVerb=GET,OrgURL=http%3A%2F%2Fmessenger%2Emsn%2Ecom,sign-in=dvader%40empire.com,pwd=ih8jedis,ct=1278901179,rver=5.5.4182.0,wp=FS_40SEC_0_COMPACT,lc=1033,id=507,ru=http:%2F%2Fmessenger.msn.com,tw=0,kpp=1,kv=4,ver=2.1.6000.1,rn=1lgjBfIL,tpf=b0735e3a873dfb5e75054465196398e0';
 		$requestParams['Host'] = 'login.live.com';
