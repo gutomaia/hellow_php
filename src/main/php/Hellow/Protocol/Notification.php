@@ -103,7 +103,7 @@ abstract class Hellow_Protocol_Notification extends Hellow_Protocol_Msnp{
 	//Contact
 	protected final function onAddContact($user, $nick, $lists, $groups=null){if(!empty($this->_contactListener)){$this->_contactListener->onAddContact(array('user'=>$user, 'nick'=>$nick, 'lists'=>$lists, 'groups'=>$groups));}}
 	protected final function onRemoveContact($user){if(!empty($this->_contactListener)) $this->_contactListener->onRemoveContact($user);}
-	protected final function onAddGroup($id, $name, $unk){if(!empty($this->_contactListener)){$this->_contactListener->onAddGroup(array('group_id'=>$id, 'name'=>$name));}}
+	protected final function onAddGroup($id, $name, $unk=null){if(!empty($this->_contactListener)){$this->_contactListener->onAddGroup(array('group_id'=>$id, 'name'=>$name));}}
 	protected final function onRemoveGroup($group){}
 
 	// Presence
