@@ -32,19 +32,19 @@
 
 	<distributionManagement>
 		<repository>
-			<id>repo</id>
+			<id>repository.guto.net</id>
 			<name>gUTO.nET Repository</name>
 			<url>scpexe://repository.guto.net/home/repogutonet/repository.guto.net/maven2</url>
 		</repository>
 		<snapshotRepository>
-			<id>repo</id>
+			<id>repository.guto.net</id>
 			<name>gUTO.nET Repository</name>
 			<url>scpexe://repository.guto.net/home/repogutonet/repository.guto.net/maven2</url>
 		</snapshotRepository>
 		<site>
-			<id>gUTOnET</id>
+			<id>guto.net</id>
 			<name>gUTO.nET Personal Site</name>
-			<url>scp://guto.net/home/gutonet/public_html/hellow_php</url>
+			<url>scpexe://guto.net/home/gutonet/guto.net/projects/hellow_php</url>
 		</site>
 	</distributionManagement>
 
