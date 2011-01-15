@@ -113,14 +113,14 @@ class Hellow_Protocol_Msnp8 extends Hellow_Protocol_Notification {
 			case "LSG" :
 				if (sizeof($params) == 4){
 					$this->onAddGroup($params[1], $params[2], $params[3]);
-				} else {
-					$this->onAddGroup($params[1], $params[2], $params[3]);
+				} else if (sizeof($params) == 3){
+					$this->onAddGroup($params[1], $params[2]);
 				}
 				break;
 			case "LST" :
-				if (sizeof($params) == 5) {						
+				if (sizeof($params) == 5){
 					$this->onAddContact($params[1], $params[2], $params[3], $params[4]);
-				} else {
+				} else if (sizeof($params) == 4){
 					$this->onAddContact($params[1], $params[2], $params[3]);
 				}
 				break;
