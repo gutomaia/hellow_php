@@ -10,12 +10,13 @@
 
 namespace Hellow\Core;
 
-interface PresenceListener {
-	function onContactAvaiable($contact);
-	function onContactBusy($contact);
-	function onContactIdle($contact);
-	function onContactBeRightBack($contact);
-	function onContactAway($contact);
-	function onContactOnPhone($contact);
-	function onContactOutLunch($contact);	
+interface PresenceListener
+{
+    public function onContactAvaiable($contact);
+    public function onContactBusy($contact);
+    public function onContactIdle($contact);
+    public function onContactBeRightBack($contact);
+    public function onContactAway($contact);
+    public function onContactOnPhone($contact);
+    public function onContactOutLunch($contact);
 }

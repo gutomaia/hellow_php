@@ -10,17 +10,19 @@
 
 namespace Hellow\Core;
 
-class TerminalDebug implements CommandListener {
+class TerminalDebug implements CommandListener
+{
+    public function onCommandReceived($command)
+    {
+        echo "\033[31m".$command;
+        //echo "<p style=\"color:#99cc00;\" >" . $cmd . "</p>";
+        //echo $command;
+    }
 
-	function onCommandReceived($command){
-		echo "\033[31m".$command;
-		//echo "<p style=\"color:#99cc00;\" >" . $cmd . "</p>";		
-		//echo $command;
-	}
-
-	function onCommandSended($command){
-		echo "\033[32m".$command;
-		//echo "<p style=\"color:#ff0000;\" >" . $command . "</p>";
-		//echo $command;
-	}
+    public function onCommandSended($command)
+    {
+        echo "\033[32m".$command;
+        //echo "<p style=\"color:#ff0000;\" >" . $command . "</p>";
+        //echo $command;
+    }
 }

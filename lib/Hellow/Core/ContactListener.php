@@ -10,10 +10,10 @@
 
 namespace Hellow\Core;
 
-interface ContactListener {
-	function onAddContact($contact);
-	function onRemoveContact($contact);
-	function onAddGroup($group);
-	function onRemoveGroup($group);
+interface ContactListener
+{
+    public function onAddContact($contact);
+    public function onRemoveContact($contact);
+    public function onAddGroup($group);
+    public function onRemoveGroup($group);
 }
-

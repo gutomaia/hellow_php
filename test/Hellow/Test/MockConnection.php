@@ -12,35 +12,41 @@ namespace Hellow\Test;
 
 use Hellow\Core\ConnectionHandle;
 
-class MockConnection implements ConnectionHandle {
-	
-	public $sended = null;
-	public $received = null;
-	public $host;
-	public $port;
-	
-	function connect($host, $port) {
-		$this->host = $host;
-		$this->port = $port;
-	}
+class MockConnection implements ConnectionHandle
+{
+    public $sended = null;
+    public $received = null;
+    public $host;
+    public $port;
 
-	function disconnect() {
-	}
+    public function connect($host, $port)
+    {
+        $this->host = $host;
+        $this->port = $port;
+    }
 
-	public function send($cmd) {
-		$this->sended = $cmd;
-	}
+    public function disconnect()
+    {
+    }
 
-	public function receive($cmd) {
-		$this->received = $cmd;
-	}
+    public function send($cmd)
+    {
+        $this->sended = $cmd;
+    }
 
-	function nextCommand() {
-		return null;
-	}
+    public function receive($cmd)
+    {
+        $this->received = $cmd;
+    }
 
-	function hasMoreCommands(){
-		return false;
-	}
+    public function nextCommand()
+    {
+        return null;
+    }
+
+    public function hasMoreCommands()
+    {
+        return false;
+    }
 
 }

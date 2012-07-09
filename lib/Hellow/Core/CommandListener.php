@@ -10,7 +10,8 @@
 
 namespace Hellow\Core;
 
-interface CommandListener {
-	function onCommandReceived($command);
-	function onCommandSended($command);
+interface CommandListener
+{
+    public function onCommandReceived($command);
+    public function onCommandSended($command);
 }

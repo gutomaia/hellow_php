@@ -7,13 +7,13 @@
  *
  *  Human Knowledge belongs to the World!
  *--------------------------------------------------------------------------*/
- 
+
 namespace Hellow\Core;
 
-interface InstantMessage {
-	function initialPresence(); //
-	function login($username, $password);
-	function connect();
-	function disconnect();
+interface InstantMessage
+{
+    public function initialPresence();
+    public function login($username, $password);
+    public function connect();
+    public function disconnect();
 }
-

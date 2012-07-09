@@ -10,10 +10,11 @@
 
 namespace Hellow\Core;
 
-interface ConnectionHandle {
-	function connect($host, $port);
-	function disconnect();
-	function nextCommand();
-	function hasMoreCommands();
-	function send($cmd);
+interface ConnectionHandle
+{
+    public function connect($host, $port);
+    public function disconnect();
+    public function nextCommand();
+    public function hasMoreCommands();
+    public function send($cmd);
 }

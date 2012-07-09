@@ -10,6 +10,7 @@
 
 namespace Hellow\Core;
 
-interface Authentication {
-	function authenticate($username, $password, $lc);
+interface Authentication
+{
+    public function authenticate($username, $password, $lc);
 }

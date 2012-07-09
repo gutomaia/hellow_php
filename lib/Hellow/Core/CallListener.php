@@ -10,8 +10,7 @@
 
 namespace Hellow\Core;
 
-interface CallListener {
-
-	function onRing($call, $server, $port, $cki, $username, $nick);
+interface CallListener
+{
+    public function onRing($call, $server, $port, $cki, $username, $nick);
 }
-

@@ -2,8 +2,8 @@
 
 require __DIR__.'/../vendor/autoload.php';
 
-if ($argc != 3){
-	die("usage: php test.php LOGIN PASSWORD\n\n");
+if ($argc != 3) {
+    die("usage: php test.php LOGIN PASSWORD\n\n");
 }
 
 $msn = new \Hellow\Protocol\Msnp8;

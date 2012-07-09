@@ -12,58 +12,65 @@ namespace Hellow\Protocol;
 
 use Hellow\Core\SocketConnection;
 
-abstract class Msnp {
+abstract class Msnp
+{
+    public $EL = "\r\n";
 
-	var $EL = "\r\n";
+    protected $_trid = 1;
 
-	protected $_trid = 1;
+    private $_connection;
 
-	private $_connection;
+    private $_connectionHandle;
 
-	private $_connectionHandle;
+    public function __construct ()
+    {
+        $this->_connectionHandle = new SocketConnection;
+    }
 
-	public function __construct () {
-		$this->_connectionHandle = new SocketConnection;
-	}
+    public function setConnectionHandle($connectionHandle)
+    {
+        $this->_connectionHandle = $connectionHandle;
+    }
 
-	public function setConnectionHandle($connectionHandle){
-		$this->_connectionHandle = $connectionHandle;
-	}
+    private $_commandListener = null;
 
-	private $_commandListener = null;
+    final public function addCommandListener($commandListener)
+    {
+        $this->_commandListener = $commandListener;
+    }
 
-	public final function addCommandListener($commandListener){
-		$this->_commandListener = $commandListener;
-	}
+    final protected function onCommandReceived($command){if(!empty($this->_commandListener)) $this->_commandListener->onCommandReceived($command);}
+    final protected function onCommandSended($command){if(!empty($this->_commandListener)) $this->_commandListener->onCommandSended($command);}
 
-	protected final function onCommandReceived($command){if(!empty($this->_commandListener)) $this->_commandListener->onCommandReceived($command);}
-	protected final function onCommandSended($command){if(!empty($this->_commandListener)) $this->_commandListener->onCommandSended($command);}
+    abstract public function getHost();
+    abstract public function getPort();
+    abstract public function execute($command);
 
-	abstract function getHost();
-	abstract function getPort();
-	abstract function execute($command);
+    final protected function send($cmd)
+    {
+        $this->_connectionHandle->send($cmd);
+        $this->onCommandSended($cmd);
+        $this->_trid++;
+    }
 
-	protected final function send($cmd) {
-		$this->_connectionHandle->send($cmd);
-		$this->onCommandSended($cmd);
-		$this->_trid++;
-	}
+    protected function connect($host, $port)
+    {
+        $this->_connectionHandle->connect($host, $port);
+    }
 
-	protected function connect($host, $port) {
-		$this->_connectionHandle->connect($host, $port);
-	}
+    protected function disconnect()
+    {
+        $this->_connectionHandle->disconnect();
+    }
 
-	protected function disconnect() {
-		$this->_connectionHandle->disconnect();
-	}
-
-	protected final function listen() {
-		while ($this->_connectionHandle->hasMoreCommands()) {
-			$command = $this->_connectionHandle->nextCommand();
-			if (trim($command) != "") {
-				$this->execute($command);
-				$this->onCommandReceived($command);
-			}
-		}
-	}
+    final protected function listen()
+    {
+        while ($this->_connectionHandle->hasMoreCommands()) {
+            $command = $this->_connectionHandle->nextCommand();
+            if (trim($command) != "") {
+                $this->execute($command);
+                $this->onCommandReceived($command);
+            }
+        }
+    }
 }

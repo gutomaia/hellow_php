@@ -10,7 +10,8 @@
 
 namespace Hellow\Core;
 
-interface ConnectionListener {
-	function onLogged();
-	function onConnected();
+interface ConnectionListener
+{
+    public function onLogged();
+    public function onConnected();
 }

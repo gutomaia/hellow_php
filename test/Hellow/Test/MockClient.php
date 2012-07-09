@@ -13,27 +13,34 @@ namespace Hellow\Test;
 use Hellow\Core\ConnectionListener;
 use Hellow\Core\ContactListener;
 
-class MockClient implements ConnectionListener, ContactListener {
-	var $logged = false;
-	var $connected = false;
-	var $group;
-	var $contact;
+class MockClient implements ConnectionListener, ContactListener
+{
+    public $logged = false;
+    public $connected = false;
+    public $group;
+    public $contact;
 
-	function onLogged(){
-		$this->logged = true;
-	}
-	function onConnected(){
-		$this->connected = true;
-	}
-	function onAddContact($contact){
-		$this->contact = $contact;
-	}
-	function onRemoveContact($contact){
-	}
-	function onAddGroup($group){
-		$this->group = $group;
-	}
-	function onRemoveGroup($group){
-	}
+    public function onLogged()
+    {
+        $this->logged = true;
+    }
+    public function onConnected()
+    {
+        $this->connected = true;
+    }
+    public function onAddContact($contact)
+    {
+        $this->contact = $contact;
+    }
+    public function onRemoveContact($contact)
+    {
+    }
+    public function onAddGroup($group)
+    {
+        $this->group = $group;
+    }
+    public function onRemoveGroup($group)
+    {
+    }
 
 }
